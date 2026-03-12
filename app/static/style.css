@@ -1,0 +1,30 @@
+/* spacing */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid black;
+}
+
+th,td{
+  border: 1px solid;
+  padding: 20px;
+}
+
+table td input {
+  width: 100%;
+}
+
+.fixed_header thead th {
+        position: sticky; /* make the table heads sticky */
+        top: 0px; /* table head will be placed from the top of the table and sticks to it */
+        background grey;
+      }
+
+.alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        }

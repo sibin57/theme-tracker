@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Просмотр тем {% endblock %}</h1>
+    <form method="post">
+        <div>
+        <span><input type="text"
+                     name ="search_request"
+                    value="{{request.form["search_request"]}}" 
+                    placeholder="Поиск...">
+            </input></span`>
+        <span><button type="submit", name="search">Найти</button></span>
+        <div>
+    </form>
+    {% if search_results is iterable%}
+    <div>
+        <ul>
+        {% for result in search_results %}
+            <li>{{result}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <h1>{{table_type}}</h1>
+    <div style = "margin: auto; width: 50%;">
+        <span><a href="?table=themes">Темы</a></span>
+        <span><a href="?table=disciplines">Дисциплины</a></span>
+        <span><a href="?table=students">Студенты</a></span>
+        <span><a href="?table=groups">Группы</a></span>
+        <span><a href="?table=qualifications">Квалификации</a></span>
+    </div>
+    <div style="overflow-x:auto; overflow-y:auto;">        
+        <table class="fixed_header">
+            <thead>
+                <tr>
+                {% for atribute in header %}
+                    <th>{{atribute}}</th>
+                {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_content %}
+                <tr>
+                    {% for atribute in row %}
+                    <td>{{atribute}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

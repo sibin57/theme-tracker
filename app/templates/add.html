@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Добавление информации{% endblock %}</h1>
+    <form method="post">
+        <h1>{{table_type}}</h1>
+        <!--<h1>{{request.args.get('table')}}</h1>-->
+
+        <div style = "margin: auto; width: 50%;">
+            <span><a href="?table=themes">Темы</a></span>
+            <span><a href="?table=disciplines">Дисциплины</a></span>
+            <span><a href="?table=students">Студенты</a></span>
+            <span><a href="?table=groups">Группы</a></span>
+            <span><a href="?table=qualifications">Квалификации</a></span>
+        </div>
+
+        <div style="overflow-x:auto; overflow-y:auto;">        
+            <table class="fixed_header">
+                <thead>
+                    <tr>
+                    {% for atribute in header %}
+                        <th>{{atribute}}</th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                <!--{#{% for row in input_table %}#}-->
+                <!-- maybe TODO namespace-->
+                    {%for i in range(5) %}
+                    <tr>
+                        {% for atribute in header %}
+                        {% set cell_name = i ~ atribute %}
+                        <td><input type=text
+                                   name="{{cell_name}}"
+                                   value="{{request.form[cell_name]}}"
+                                   placeholder="{{cell_name}}"></input></td>
+                        
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button type="submit", name="submit">Добавить</button>
+    </form>
+{% endblock %}
